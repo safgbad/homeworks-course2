@@ -1,17 +1,16 @@
 package transport.transports;
 
+import transport.Transport;
 import utils.Utils;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Car {
-    private final String brand;
-    private final String model;
+public class Car extends Transport {
+
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
+
+
     private String transmission;
     private final String typeOfBody;
     private String registrationNumber;
@@ -32,34 +31,11 @@ public class Car {
                int numberOfSeats,
                boolean areTiresWinter,
                Key key,
-               Insurance insurance) {
-        if (Utils.isStringNotNullAndNotBlank(brand)) {
-            this.brand = brand;
-        } else {
-            this.brand = "default";
-        }
-
-        if (Utils.isStringNotNullAndNotBlank(model)) {
-            this.model = model;
-        } else {
-            this.model = "default";
-        }
+               Insurance insurance,
+               double maxSpeed) {
+        super(brand, model, color, year, country, maxSpeed);
 
         setEngineVolume(engineVolume);
-
-        setColor(color);
-
-        if (year > 0) {
-            this.year = year;
-        } else {
-            this.year = 2000;
-        }
-
-        if (Utils.isStringNotNullAndNotBlank(country)) {
-            this.country = country;
-        } else {
-            this.country = "default";
-        }
 
         setTransmission(transmission);
 
@@ -144,14 +120,6 @@ public class Car {
         }
     }
 
-    public void setColor(String color) {
-        if (Utils.isStringNotNullAndNotBlank(color)) {
-            this.color = color;
-        } else {
-            this.color = "белый";
-        }
-    }
-
     public void setTransmission(String transmission) {
         if (Utils.isStringNotNullAndNotBlank(transmission)) {
             this.transmission = transmission;
@@ -204,7 +172,7 @@ public class Car {
     @Override
     public String toString() {
         return "========================================\n" +
-                brand + " " + model + '\n'
+                "[Легковой автомобиль] " + brand + " " + model + '\n'
                 + "Мощность двигателя: " + engineVolume + '\n'
                 + "Цвет кузова: " + color + '\n'
                 + "Год производства: " + year + '\n'
@@ -216,6 +184,7 @@ public class Car {
                 + "Зимняя резина: " + (areTiresWinter ? "да" : "нет") + '\n'
                 + "Ключ: " + key + '\n'
                 + "Страховка: " + (insurance != null ? insurance : "нет") + '\n'
+                + "Максимальная скорость (км/ч): " + maxSpeed + '\n'
                 + "========================================";
     }
 
