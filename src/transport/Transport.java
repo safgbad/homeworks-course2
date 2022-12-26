@@ -7,7 +7,9 @@ import transport.transports.Car;
 import transport.transports.Truck;
 import utils.Utils;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public abstract class Transport implements Competing {
     private final String type;

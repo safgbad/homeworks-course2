@@ -7,7 +7,7 @@ import transport.enums.Body;
 
 import java.util.Objects;
 
-public class Car <T extends DriverB> extends Transport {
+public class Car<T extends DriverB> extends Transport {
     private Body body;
 
     public Car(String brand,
