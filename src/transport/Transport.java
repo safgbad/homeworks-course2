@@ -1,16 +1,29 @@
 package transport;
 
+import driver.Driver;
+import transport.transports.Bus;
+import transport.transports.Car;
+import transport.transports.Truck;
 import utils.Utils;
 
-public abstract class Transport {
-    protected final String brand;
-    protected final String model;
-    protected String color;
-    protected final int year;
-    protected final String country;
-    protected double maxSpeed;
+public abstract class Transport implements Competing {
+    private final String type;
+    private final String brand;
+    private final String model;
+    private double engineVolume;
+    private Driver driver;
 
-    public Transport(String brand, String model, String color, int year, String country, double maxSpeed) {
+    public Transport(String brand, String model, double engineVolume, Driver driver) {
+        if (this instanceof Car) {
+            type = "Легковой автомобиль";
+        } else if (this instanceof Bus) {
+            type = "Автобус";
+        } else if (this instanceof Truck) {
+            type = "Грузовой автомобиль";
+        } else {
+            type = "default";
+        }
+
         if (Utils.isStringNotNullAndNotBlank(brand)) {
             this.brand = brand;
         } else {
@@ -23,21 +36,9 @@ public abstract class Transport {
             this.model = "default";
         }
 
-        setColor(color);
+        setEngineVolume(engineVolume);
 
-        if (year > 0) {
-            this.year = year;
-        } else {
-            this.year = 2000;
-        }
-
-        if (Utils.isStringNotNullAndNotBlank(country)) {
-            this.country = country;
-        } else {
-            this.country = "default";
-        }
-
-        setMaxSpeed(maxSpeed);
+        this.driver = driver;
     }
 
     public String getBrand() {
@@ -48,35 +49,55 @@ public abstract class Transport {
         return model;
     }
 
-    public String getColor() {
-        return color;
+    public double getEngineVolume() {
+        return engineVolume;
     }
 
-    public int getYear() {
-        return year;
+    public Driver getDriver() {
+        return driver;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public double getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setColor(String color) {
-        if (Utils.isStringNotNullAndNotBlank(color)) {
-            this.color = color;
+    public void setEngineVolume(double engineVolume) {
+        if (engineVolume > 0) {
+            this.engineVolume = engineVolume;
         } else {
-            this.color = "белый";
+            this.engineVolume = 1.5;
         }
     }
 
-    public void setMaxSpeed(double maxSpeed) {
-        if (maxSpeed > 0) {
-            this.maxSpeed = maxSpeed;
-        } else {
-            this.maxSpeed = 90;
-        }
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public void startMoving() {
+        System.out.println(type + ' ' + brand + " " + model + " начал движение.");
+    }
+
+    public void endMoving() {
+        System.out.println(type + ' ' + brand + " " + model + " закончил движение.");
+    }
+
+    @Override
+    public void pitStop() {
+        System.out.println(type + ' ' + brand + " " + model + " на пит-стопе.");
+    }
+
+    @Override
+    public void bestLapTime() {
+        System.out.println("Лучший круг " + brand + " " + model + ": " + 5 + 3 * Math.random() + " мин.");
+    }
+
+    @Override
+    public void maxSpeed() {
+        System.out.println("Максимальная скорость " + brand + " " + model + ": " + 5 + 3 * Math.random() + " км/ч.");
+    }
+
+    @Override
+    public String toString() {
+        return "========================================\n" +
+                "[" + type + "] " + brand + " " + model + '\n'
+                + "Мощность двигателя: " + engineVolume + '\n'
+                + (driver != null ? "Водитель: " + driver + '\n' : "")
+                + "========================================";
     }
 }
