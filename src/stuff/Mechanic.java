@@ -99,7 +99,11 @@ public class Mechanic {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mechanic mechanic = (Mechanic) o;
-        return workingWithCars == mechanic.workingWithCars && workingWithTrucks == mechanic.workingWithTrucks && workingWithBuses == mechanic.workingWithBuses && fullName.equals(mechanic.fullName) && company.equals(mechanic.company);
+        return workingWithCars == mechanic.workingWithCars
+                && workingWithTrucks == mechanic.workingWithTrucks
+                && workingWithBuses == mechanic.workingWithBuses
+                && fullName.equals(mechanic.fullName)
+                && company.equals(mechanic.company);
     }
 
     @Override

@@ -11,14 +11,13 @@ import transport.transports.Car;
 import transport.transports.Truck;
 import utils.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        List<Transport> transports = new ArrayList<>();
+        Set<Transport> transports = new HashSet<>();
         List<Driver> drivers = new ArrayList<>();
-        List<Mechanic> mechanics = new ArrayList<>();
+        Set<Mechanic> mechanics = new HashSet<>();
 
         DriverB driver1 = new DriverB("Name1", true, 2);
         drivers.add(driver1);
