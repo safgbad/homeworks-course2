@@ -23,9 +23,13 @@ public class Utils {
             transport.printType();
             switch (transport.getDiagnostic()) {
                 case 0:
-                    throw new RuntimeException("У водителя "
+//                    throw new RuntimeException("У водителя "
+//                            + transport.getBrand() + ' ' + transport.getModel()
+//                            + " отсутствуют права!");
+                    System.out.println("У водителя "
                             + transport.getBrand() + ' ' + transport.getModel()
-                            + "отсутствуют права!");
+                            + " отсутствуют права!");
+                    break;
                 case 1:
                     System.out.println(transport.getBrand() + ' ' + transport.getModel()
                             + " успешно прошло диагностику");

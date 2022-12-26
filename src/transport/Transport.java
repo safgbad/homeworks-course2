@@ -1,10 +1,14 @@
 package transport;
 
-import driver.Driver;
+import stuff.Mechanic;
+import stuff.driver.Driver;
 import transport.transports.Bus;
 import transport.transports.Car;
 import transport.transports.Truck;
 import utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Transport implements Competing {
     private final String type;
@@ -12,6 +16,7 @@ public abstract class Transport implements Competing {
     protected final String model;
     private double engineVolume;
     protected Driver driver;
+    protected final List<Mechanic> mechanics;
 
     public Transport(String brand, String model, double engineVolume, Driver driver) {
         if (this instanceof Car) {
@@ -39,6 +44,8 @@ public abstract class Transport implements Competing {
         setEngineVolume(engineVolume);
 
         this.driver = driver;
+
+        mechanics = new ArrayList<>();
     }
 
     public String getBrand() {
@@ -57,6 +64,10 @@ public abstract class Transport implements Competing {
         return driver;
     }
 
+    public List<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
     public void setEngineVolume(double engineVolume) {
         if (engineVolume > 0) {
             this.engineVolume = engineVolume;
@@ -64,6 +75,8 @@ public abstract class Transport implements Competing {
             this.engineVolume = 1.5;
         }
     }
+
+    public abstract void addMechanic(Mechanic mechanic);
 
     public void setDriver(Driver driver) {
         this.driver = driver;
@@ -101,10 +114,15 @@ public abstract class Transport implements Competing {
 
     @Override
     public String toString() {
-        return "========================================\n" +
+        StringBuilder stringBuilder = new StringBuilder("========================================\n" +
                 "[" + type + "] " + brand + " " + model + '\n'
                 + "Мощность двигателя: " + engineVolume + '\n'
                 + (driver != null ? "Водитель: " + driver + '\n' : "")
-                + "========================================";
+                + (mechanics.isEmpty() ? "" : "Механики:\n"));
+        for (Mechanic mechanic : mechanics) {
+            stringBuilder.append("\t • ").append(mechanic).append('\n');
+        }
+        stringBuilder.append("========================================");
+        return stringBuilder.toString();
     }
 }

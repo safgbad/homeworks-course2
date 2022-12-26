@@ -1,6 +1,7 @@
 package transport.transports;
 
-import driver.drivers.DriverC;
+import stuff.Mechanic;
+import stuff.driver.drivers.DriverC;
 import transport.Transport;
 import transport.enums.LoadCapacity;
 
@@ -24,6 +25,15 @@ public class Truck <T extends DriverC> extends Transport {
 
     public void setLoadCapacity(LoadCapacity loadCapacity) {
         this.loadCapacity = Objects.requireNonNullElse(loadCapacity, LoadCapacity.N1);
+    }
+
+    @Override
+    public void addMechanic(Mechanic mechanic) {
+        if (mechanic != null
+                && mechanic.isWorkingWithTrucks()
+                && !mechanics.contains(mechanic)) {
+            mechanics.add(mechanic);
+        }
     }
 
     @Override
