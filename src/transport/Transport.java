@@ -11,7 +11,7 @@ public abstract class Transport implements Competing {
     protected final String brand;
     protected final String model;
     private double engineVolume;
-    private Driver driver;
+    protected Driver driver;
 
     public Transport(String brand, String model, double engineVolume, Driver driver) {
         if (this instanceof Car) {
@@ -78,6 +78,11 @@ public abstract class Transport implements Competing {
     }
 
     public abstract void printType();
+
+    // -1 – для транспортных средств, не требующих диагностики
+    // 0 – для непрошедших диагностику транспортных средств
+    // 1 – для прошедших диагностику транспортных средств
+    public abstract int getDiagnostic();
 
     @Override
     public void pitStop() {

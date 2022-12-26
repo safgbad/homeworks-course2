@@ -30,4 +30,12 @@ public class Car <T extends DriverB> extends Transport {
     public void printType() {
         System.out.println('[' + brand + ' ' + model + "] " + body);
     }
+
+    @Override
+    public int getDiagnostic() {
+        if (driver.isHaveLicense()) {
+            return 1;
+        }
+        return 0;
+    }
 }

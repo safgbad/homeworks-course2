@@ -21,6 +21,19 @@ public class Utils {
                     + " управляет автомобилем " + transport.getBrand() + ' ' + transport.getModel()
                     + " и будет участвовать в заезде.");
             transport.printType();
+            switch (transport.getDiagnostic()) {
+                case 0:
+                    throw new RuntimeException("У водителя "
+                            + transport.getBrand() + ' ' + transport.getModel()
+                            + "отсутствуют права!");
+                case 1:
+                    System.out.println(transport.getBrand() + ' ' + transport.getModel()
+                            + " успешно прошло диагностику");
+                    break;
+                default:
+                    System.out.println(transport.getBrand() + ' ' + transport.getModel()
+                            + " не требует диагностики");
+            }
         }
         System.out.println();
     }
