@@ -7,9 +7,7 @@ import transport.transports.Car;
 import transport.transports.Truck;
 import utils.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Transport implements Competing {
     private final String type;
@@ -17,7 +15,7 @@ public abstract class Transport implements Competing {
     protected final String model;
     private double engineVolume;
     protected Driver driver;
-    protected final List<Mechanic> mechanics;
+    protected final Set<Mechanic> mechanics;
 
     public Transport(String brand, String model, double engineVolume, Driver driver) {
         if (this instanceof Car) {
@@ -46,7 +44,7 @@ public abstract class Transport implements Competing {
 
         this.driver = driver;
 
-        mechanics = new ArrayList<>();
+        mechanics = new HashSet<>();
     }
 
     public String getBrand() {
@@ -65,7 +63,7 @@ public abstract class Transport implements Competing {
         return driver;
     }
 
-    public List<Mechanic> getMechanics() {
+    public Set<Mechanic> getMechanics() {
         return mechanics;
     }
 

@@ -30,8 +30,7 @@ public class Truck <T extends DriverC> extends Transport {
     @Override
     public void addMechanic(Mechanic mechanic) {
         if (mechanic != null
-                && mechanic.isWorkingWithTrucks()
-                && !mechanics.contains(mechanic)) {
+                && mechanic.isWorkingWithTrucks()) {
             mechanics.add(mechanic);
         }
     }
