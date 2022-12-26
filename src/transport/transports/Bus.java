@@ -30,4 +30,9 @@ public class Bus <T extends DriverD> extends Transport {
     public void printType() {
         System.out.println('[' + brand + ' ' + model + "] " + capacity);
     }
+
+    @Override
+    public int getDiagnostic() {
+        return -1;
+    }
 }

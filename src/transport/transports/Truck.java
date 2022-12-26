@@ -30,4 +30,12 @@ public class Truck <T extends DriverC> extends Transport {
     public void printType() {
         System.out.println('[' + brand + ' ' + model + "] " + loadCapacity);
     }
+
+    @Override
+    public int getDiagnostic() {
+        if (driver.isHaveLicense()) {
+            return 1;
+        }
+        return 0;
+    }
 }
