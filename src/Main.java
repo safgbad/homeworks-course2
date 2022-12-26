@@ -11,12 +11,13 @@ import transport.transports.Car;
 import transport.transports.Truck;
 import utils.Utils;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
         Set<Transport> transports = new HashSet<>();
-        List<Driver> drivers = new ArrayList<>();
+        Set<Driver> drivers = new HashSet<>();
         Set<Mechanic> mechanics = new HashSet<>();
 
         DriverB driver1 = new DriverB("Name1", true, 2);
@@ -127,6 +128,9 @@ public class Main {
                 transport.addMechanic(mechanic);
             }
             Utils.printCompeting(transport);
+        }
+        for (Driver driver : drivers) {
+            System.out.println(driver);
         }
     }
 }

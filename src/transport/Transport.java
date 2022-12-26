@@ -7,7 +7,9 @@ import transport.transports.Car;
 import transport.transports.Truck;
 import utils.Utils;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public abstract class Transport implements Competing {
     private final String type;
@@ -123,20 +125,5 @@ public abstract class Transport implements Competing {
         }
         stringBuilder.append("========================================");
         return stringBuilder.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Transport transport = (Transport) o;
-        return brand.equals(transport.brand)
-                && model.equals(transport.model)
-                && Objects.equals(driver, transport.driver);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(brand, model, driver);
     }
 }

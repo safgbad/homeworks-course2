@@ -7,7 +7,7 @@ import transport.enums.Capacity;
 
 import java.util.Objects;
 
-public class Bus <T extends DriverD> extends Transport {
+public class Bus<T extends DriverD> extends Transport {
     private Capacity capacity;
 
     public Bus(String brand,
