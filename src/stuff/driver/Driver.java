@@ -2,6 +2,8 @@ package stuff.driver;
 
 import utils.Utils;
 
+import java.util.Objects;
+
 public class Driver {
     private final String fullName;
     private boolean haveLicense;
@@ -44,5 +46,18 @@ public class Driver {
         return "[ФИО: " + fullName
                 + "; Наличие водительских прав: " + (haveLicense ? "да" : "нет")
                 + "; Стаж: " + experience + " лет]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return haveLicense == driver.haveLicense && experience == driver.experience && fullName.equals(driver.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, haveLicense, experience);
     }
 }
