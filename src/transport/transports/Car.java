@@ -1,6 +1,7 @@
 package transport.transports;
 
-import driver.drivers.DriverB;
+import stuff.Mechanic;
+import stuff.driver.drivers.DriverB;
 import transport.Transport;
 import transport.enums.Body;
 
@@ -24,6 +25,15 @@ public class Car <T extends DriverB> extends Transport {
 
     public void setBody(Body body) {
         this.body = Objects.requireNonNullElse(body, Body.SEDAN);
+    }
+
+    @Override
+    public void addMechanic(Mechanic mechanic) {
+        if (mechanic != null
+                && mechanic.isWorkingWithCars()
+                && !mechanics.contains(mechanic)) {
+            mechanics.add(mechanic);
+        }
     }
 
     @Override

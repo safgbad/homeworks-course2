@@ -1,6 +1,9 @@
-import driver.drivers.DriverB;
-import driver.drivers.DriverC;
-import driver.drivers.DriverD;
+import stuff.Mechanic;
+import stuff.driver.Driver;
+import stuff.driver.drivers.DriverB;
+import stuff.driver.drivers.DriverC;
+import stuff.driver.drivers.DriverD;
+import transport.Transport;
 import transport.enums.Capacity;
 import transport.enums.LoadCapacity;
 import transport.transports.Bus;
@@ -8,85 +11,123 @@ import transport.transports.Car;
 import transport.transports.Truck;
 import utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        Car<DriverB> lada = new Car<>(
+        List<Transport> transports = new ArrayList<>();
+        List<Driver> drivers = new ArrayList<>();
+        List<Mechanic> mechanics = new ArrayList<>();
+
+        DriverB driver1 = new DriverB("Name1", true, 2);
+        drivers.add(driver1);
+        transports.add(new Car<>(
                 "Lada",
                 "Granta",
                 1.7,
-                new DriverB("Name1", true, 2),
-                null);
-        Car<DriverB> audi = new Car<>(
+                driver1,
+                null));
+        DriverB driver2 = new DriverB("Name2", false, 5);
+        drivers.add(driver2);
+        transports.add(new Car<>(
                 "Audi",
                 "A8 50 L TDI quattro",
                 3.0,
-                new DriverB("Name2", false, 5),
-                null);
-        Car<DriverB> bmw = new Car<>(
+                driver2,
+                null));
+        DriverB driver3 = new DriverB("Name3", true, 3);
+        drivers.add(driver3);
+        transports.add(new Car<>(
                 "BMW",
                 "Z8",
                 3.0,
-                new DriverB("Name3", true, 3),
-                null);
-        Car<DriverB> hyundai = new Car<>("Hyundai",
+                driver3,
+                null));
+        DriverB driver4 = new DriverB("Name4", true, 7);
+        drivers.add(driver4);
+        transports.add(new Car<>("Hyundai",
                 "Avante",
                 1.6,
-                new DriverB("Name4", true, 7),
-                null);
+                driver4,
+                null));
 
-        Bus<DriverD> ikarus = new Bus<>("Ikarus",
+        DriverD driver5 = new DriverD("Name5", true, 6);
+        drivers.add(driver5);
+        transports.add(new Bus<>("Ikarus",
                 "250",
                 2.5,
-                new DriverD("Name5", true, 6),
-                Capacity.XL);
-        Bus<DriverD> pazik = new Bus<>("ПАЗ",
+                driver5,
+                Capacity.XL));
+        DriverD driver6 = new DriverD("Name6", true, 13);
+        drivers.add(driver6);
+        transports.add(new Bus<>("ПАЗ",
                 "3205",
                 2.9,
-                new DriverD("Name6", true, 13),
-                Capacity.S);
-        Bus<DriverD> gazel = new Bus<>("ГАЗель",
+                driver6,
+                Capacity.S));
+        DriverD driver7 = new DriverD("Name7", false, 3);
+        drivers.add(driver7);
+        transports.add(new Bus<>("ГАЗель",
                 "NEXT",
                 2.4,
-                new DriverD("Name7", false, 3),
-                Capacity.M);
-        Bus<DriverD> sprinter = new Bus<>("Mercedes",
+                driver7,
+                Capacity.M));
+        DriverD driver8 = new DriverD("Name8", true, 4);
+        drivers.add(driver8);
+        transports.add(new Bus<>("Mercedes",
                 "Sprinter",
                 3.2,
-                new DriverD("Name8", true, 4),
-                Capacity.XS);
+                driver8,
+                Capacity.XS));
 
-        Truck<DriverC> volvoFH = new Truck<>("Volvo",
+        DriverC driver9 = new DriverC("Name9", true, 14);
+        drivers.add(driver9);
+        transports.add(new Truck<>("Volvo",
                 "FH",
                 5.4,
-                new DriverC("Name9", true, 14),
-                null);
-        Truck<DriverC> volvoVN = new Truck<>("Volvo",
+                driver9,
+                null));
+        DriverC driver10 = new DriverC("Name10", true, 5);
+        drivers.add(driver10);
+        transports.add(new Truck<>("Volvo",
                 "VN",
                 5.9,
-                new DriverC("Name10", true, 5),
-                LoadCapacity.N1);
-        Truck<DriverC> volvoFL6 = new Truck<>("Volvo",
+                driver10,
+                LoadCapacity.N1));
+        DriverC driver11 = new DriverC("Name11", true, 7);
+        drivers.add(driver11);
+        transports.add(new Truck<>("Volvo",
                 "FL6",
                 7.2,
-                new DriverC("Name11", true, 7),
-                LoadCapacity.N2);
-        Truck<DriverC> volvoVT = new Truck<>("Volvo",
+                driver11,
+                LoadCapacity.N2));
+        DriverC driver12 = new DriverC("Name12", false, 2);
+        drivers.add(driver12);
+        transports.add(new Truck<>("Volvo",
                 "VT",
                 6.1,
-                new DriverC("Name12", false, 2),
-                LoadCapacity.N3);
+                driver12,
+                LoadCapacity.N3));
 
-        Utils.printCompeting(lada);
-        Utils.printCompeting(audi);
-        Utils.printCompeting(bmw);
-        Utils.printCompeting(hyundai);
-        Utils.printCompeting(ikarus);
-        Utils.printCompeting(pazik);
-        Utils.printCompeting(gazel);
-        Utils.printCompeting(sprinter);
-        Utils.printCompeting(volvoFH);
-        Utils.printCompeting(volvoVN);
-        Utils.printCompeting(volvoFL6);
-        Utils.printCompeting(volvoVT);
+        Mechanic mechanic1 = new Mechanic("Name13",
+                "Company1",
+                false, false, false);
+        mechanics.add(mechanic1);
+        Mechanic mechanic2 = new Mechanic("Name14",
+                "Company1",
+                true, true, true);
+        mechanics.add(mechanic2);
+        Mechanic mechanic3 = new Mechanic("Name15",
+                "Company1",
+                true, false, false);
+        mechanics.add(mechanic3);
+
+        for (Transport transport : transports) {
+            for (Mechanic mechanic : mechanics) {
+                transport.addMechanic(mechanic);
+            }
+            Utils.printCompeting(transport);
+        }
     }
 }
